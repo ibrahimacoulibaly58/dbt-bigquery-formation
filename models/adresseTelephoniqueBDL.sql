@@ -1,0 +1,1 @@
+select * from `dbt-bigquery-513018.dbtformation.adresseTelephoniqueRDL`

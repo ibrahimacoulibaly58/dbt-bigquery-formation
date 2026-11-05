@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: personneRDL
+    description: "Table contenant les informations des personnes transformées dans le BDL."
+    columns:
+      - name: idPersonne
+        description: "Identifiant unique pour chaque personne."
+        tests:
+          - assert_unique:
+              column_name: idPersonne
+          - unique
+          - not_null
+      - name: idAdressedomicile
+        description: "Identifiant de l'adresse de domicile de la personne."
+        tests:
+          - relationships:
+              to: ref('adresseDomicileBDL')
+              field: idAdresse
+
+  - name: adresseTelephoniqueBDL
+    description: "Table contenant les informations des adresses téléphoniques transformées dans le BDL."
+    columns:
+      - name: typeTelephone
+        description: "Type de téléphone associé à l'adresse."
+        tests:
+          - accepted_values:
+              values: ['fixe', 'mobile', 'fax']
